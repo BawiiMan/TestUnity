@@ -6,7 +6,7 @@ public class ExEnemy : MonoBehaviour
 {
     public ExPlayer targetPlayer;
 
-    private int damage = 20;
+    public int damage = 20;
 
     public void AttackPlayer(ExPlayer player)
     {
