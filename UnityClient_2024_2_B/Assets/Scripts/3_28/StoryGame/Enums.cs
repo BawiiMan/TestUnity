@@ -43,7 +43,7 @@ namespace STORYGAME
         public int hpPoint;
         public int spPoint;
 
-        public int CurrentHpPoint;
+        public int currentHpPoint;
         public int currentSpPoint;
         public int currentXpPoint;
 
