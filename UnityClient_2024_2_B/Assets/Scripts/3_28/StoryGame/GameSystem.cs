@@ -63,8 +63,8 @@ namespace STORYGAME
         {
             StoryModel tempStoryModels = FindStoryModel(number);
 
-            //StorySystem.Instnace.currentStoryModel = tempStoryModels;
-            //StorySystem.instance.CoShowText();
+            StorySystem.instance.currentStoryModel = tempStoryModels;
+            StorySystem.instance.CoShowText();
         }
         public void ApplyChoice(StoryModel.Result result)       //스토리 선택시 결과
         {

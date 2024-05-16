@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using STORYGAME;
 
 public class StorySystem : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class StorySystem : MonoBehaviour
     public StoryModel currentStoryModel;
     public enum TEXTSYSTEM
     {
+        NONE,
         DOING,
         SELECT,
         DONE
@@ -25,6 +27,8 @@ public class StorySystem : MonoBehaviour
 
     public Button[] buttonWay = new Button[3];          //선택지 버튼
     public Text[] buttonWayText = new Text[3];           //버튼 텍스트
+
+    TEXTSYSTEM textsystem = TEXTSYSTEM.NONE;
 
     public void Awake()
     {
@@ -56,8 +60,26 @@ public class StorySystem : MonoBehaviour
         }
     }
 
+    public void CoShowText()
+    {
+        StoryModelInit();               //모델 Init
+        ResetShow();                    //리셋
+        StartCoroutine (ShowText());
+    }
+
+    public void ResetShow()
+    {
+        textComponent.text = "";
+
+        for (int i = 0; i < buttonWay.Length; i++)
+        {
+            buttonWay[i].gameObject.SetActive(false);
+        }
+    }
+
     IEnumerator ShowText()
     {
+        textsystem = TEXTSYSTEM.DOING;
         if(currentStoryModel.MainImage != null)
         {
             //Texture2D => Sprite 로 변환
@@ -78,9 +100,32 @@ public class StorySystem : MonoBehaviour
             textComponent.text = currentText;
             yield return new WaitForSeconds(delay);
         }
+
+
+        for(int i = 0; i < currentStoryModel.options.Length; i++)
+        {
+            buttonWay[i].gameObject.SetActive(true);
+            yield return new WaitForSeconds(delay);
+        }
+
+        textsystem = TEXTSYSTEM.NONE;
     }
     public void OnWayClick(int index)   //버튼 누를시 호출 되는 함수
     {
+        if (textsystem == TEXTSYSTEM.DOING)
+            return;
         Debug.Log("OnWayClick : " + index);
+
+        bool CheckEventTypeNone = false;                        //기본적으로 NONE 일때는 성공 판단 실패시 다시 함수 호출되는 것을 막기
+        StoryModel playStoryMode = currentStoryModel;
+
+        if (playStoryMode.options[index].eventCheck.type == StoryModel.EventCheck.EventType.NONE)
+        {
+            for (int i = 0; i < playStoryMode.options[index].eventCheck.successResult.Length; i++)
+            {
+                GameSystem.Instance.ApplyChoice(currentStoryModel.options[index].eventCheck.successResult[i]);
+                CheckEventTypeNone = true;
+            }
+        }
     }
 }

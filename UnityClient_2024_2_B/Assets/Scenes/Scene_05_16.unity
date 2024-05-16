@@ -631,17 +631,17 @@ MonoBehaviour:
   delay: 0.1
   fullText: 
   currentText: 
-  textComponent: {fileID: 0}
-  storyIndex: {fileID: 0}
-  imageComponent: {fileID: 0}
+  textComponent: {fileID: 985009378}
+  storyIndex: {fileID: 1823854455}
+  imageComponent: {fileID: 902980049}
   buttonWay:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 461566401}
+  - {fileID: 403295114}
+  - {fileID: 1935159708}
   buttonWayText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 694473194}
+  - {fileID: 32429529}
+  - {fileID: 1056040358}
 --- !u!4 &961634757
 Transform:
   m_ObjectHideFlags: 0
@@ -922,6 +922,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1754046949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1754046951}
+  - component: {fileID: 1754046950}
+  m_Layer: 0
+  m_Name: GameSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1754046950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754046949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4955ff32b1928924ab1e61f1ad693864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  stats:
+    hpPoint: 0
+    spPoint: 0
+    currentHpPoint: 0
+    currentSpPoint: 0
+    currentXpPoint: 0
+    strength: 0
+    dexterity: 0
+    constitution: 0
+    intelligence: 0
+    wisdom: 0
+    charisma: 0
+  storyModels:
+  - {fileID: 11400000, guid: e418a9f6a9d2124499c7e9a5ac7a5cd6, type: 2}
+  - {fileID: 11400000, guid: a7fd7c6fd66a5a043a95b4989c6c3c8d, type: 2}
+  currentStoryIndex: 1
+--- !u!4 &1754046951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754046949}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1823854453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,3 +1470,4 @@ SceneRoots:
   - {fileID: 961634757}
   - {fileID: 1316679814}
   - {fileID: 1907392155}
+  - {fileID: 1754046951}
