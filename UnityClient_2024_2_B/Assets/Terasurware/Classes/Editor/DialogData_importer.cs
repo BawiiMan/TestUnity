@@ -7,10 +7,10 @@ using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
 using NPOI.SS.UserModel;
 
-public class MonsterData_2_importer : AssetPostprocessor {
-	private static readonly string filePath = "Assets/Resources/MonsterData_2.xlsx";
-	private static readonly string exportPath = "Assets/Resources/MonsterData_2.asset";
-	private static readonly string[] sheetNames = { "Sheet1", };
+public class DialogData_importer : AssetPostprocessor {
+	private static readonly string filePath = "Assets/Resources/Excel/DialogData.xlsx";
+	private static readonly string exportPath = "Assets/Resources/Excel/DialogData.asset";
+	private static readonly string[] sheetNames = { "Dialog", };
 	
 	static void OnPostprocessAllAssets (string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
 	{
@@ -18,9 +18,9 @@ public class MonsterData_2_importer : AssetPostprocessor {
 			if (!filePath.Equals (asset))
 				continue;
 				
-			Entity_Sheet1 data = (Entity_Sheet1)AssetDatabase.LoadAssetAtPath (exportPath, typeof(Entity_Sheet1));
+			Entity_Dialog data = (Entity_Dialog)AssetDatabase.LoadAssetAtPath (exportPath, typeof(Entity_Dialog));
 			if (data == null) {
-				data = ScriptableObject.CreateInstance<Entity_Sheet1> ();
+				data = ScriptableObject.CreateInstance<Entity_Dialog> ();
 				AssetDatabase.CreateAsset ((ScriptableObject)data, exportPath);
 				data.hideFlags = HideFlags.NotEditable;
 			}
@@ -41,19 +41,20 @@ public class MonsterData_2_importer : AssetPostprocessor {
 						continue;
 					}
 
-					Entity_Sheet1.Sheet s = new Entity_Sheet1.Sheet ();
+					Entity_Dialog.Sheet s = new Entity_Dialog.Sheet ();
 					s.name = sheetName;
 				
 					for (int i=1; i<= sheet.LastRowNum; i++) {
 						IRow row = sheet.GetRow (i);
 						ICell cell = null;
 						
-						Entity_Sheet1.Param p = new Entity_Sheet1.Param ();
+						Entity_Dialog.Param p = new Entity_Dialog.Param ();
 						
 					cell = row.GetCell(0); p.index = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(1); p.hp = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(2); p.mp = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(3); p.name = (cell == null ? "" : cell.StringCellValue);
+					cell = row.GetCell(1); p.npc = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(2); p.gamestate = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(3); p.Dialog = (cell == null ? "" : cell.StringCellValue);
+					cell = row.GetCell(4); p.ChangeState = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Entity_Sheet1 : ScriptableObject
+public class Entity_Dialog : ScriptableObject
 {	
 	public List<Sheet> sheets = new List<Sheet> ();
 
@@ -20,6 +20,7 @@ public class Entity_Sheet1 : ScriptableObject
 		public int index;
 		public int npc;
 		public int gamestate;
+		public string Dialog;
 		public int ChangeState;
 	}
 }
