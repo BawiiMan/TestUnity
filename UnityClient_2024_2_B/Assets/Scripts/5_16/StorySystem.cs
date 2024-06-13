@@ -116,7 +116,7 @@ public class StorySystem : MonoBehaviour
             return;
         Debug.Log("OnWayClick : " + index);
 
-        bool CheckEventTypeNone = false;                        //기본적으로 NONE 일때는 성공 판단 실패시 다시 함수 호출되는 것을 막기
+        //bool CheckEventTypeNone = false;                        //기본적으로 NONE 일때는 성공 판단 실패시 다시 함수 호출되는 것을 막기
         StoryModel playStoryMode = currentStoryModel;
 
         if (playStoryMode.options[index].eventCheck.type == StoryModel.EventCheck.EventType.NONE)
@@ -124,7 +124,7 @@ public class StorySystem : MonoBehaviour
             for (int i = 0; i < playStoryMode.options[index].eventCheck.successResult.Length; i++)
             {
                 GameSystem.Instance.ApplyChoice(currentStoryModel.options[index].eventCheck.successResult[i]);
-                CheckEventTypeNone = true;
+                //CheckEventTypeNone = true;
             }
         }
     }
